@@ -72,6 +72,9 @@ void lamp_array_apply(void) {
     if (game_connected) {
         return;
     }
+    if(!(ControllerConfig.cfg0 & CFG0_BIT_ENABLE_LAMPARRAY)){
+        return;
+    }
     if (!s_dirty) {
         return;
     }

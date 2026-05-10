@@ -1,4 +1,3 @@
-
 #include <boot_mode.h>
 #include <chuni_io.h>
 #include <controller_config.h>
@@ -19,18 +18,19 @@ void boot_switch() {
     initHwDevices();
     sleep_ms(10);
     // if(ControllerConfig.controller_mode == MODE_NORMAL){
-        boot_normalMode();
+    boot_normalMode();
     // }
-
 }
 
 void boot_normalMode() {
 
     sleep_ms(10);
-    while (true) {
-        // if (!game_connected) {
-        //     // update_rainbow_frame();
-        // }
+    while(true) {
+        if(!game_connected) {
+            if(!(ControllerConfig.cfg0 & CFG0_BIT_ENABLE_LAMPARRAY)) {
+                update_rainbow_frame();
+            }
+        }
         updateInputState();
         maindev_loop();
     }

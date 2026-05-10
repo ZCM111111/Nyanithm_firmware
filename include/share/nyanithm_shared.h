@@ -30,7 +30,7 @@ struct controller_config {
     uint8_t magic;            // 此值必须为 CONTROLLER_CONFIG_MAGIC
     uint8_t cfgVer;           // 配置文件版本
     uint8_t hwVer;            // 硬件版本
-    uint8_t cfg0;             // b0: 强制使用16灯模式; b1: 降低非判定区域灯光亮度; b2: 启用LampArray; b3: 启用触摸反馈
+    uint8_t cfg0;             // b0: 强制使用16灯模式; b1: 降低非判定区域灯光亮度; b2: 启用动态照明; b3: 启用触摸光效反馈
     uint8_t cfg1;             // b0: 启用触摸板键盘输入; b1: 启用Air键盘输入
     uint8_t cfg2;             //
     uint8_t cfg3;             //
