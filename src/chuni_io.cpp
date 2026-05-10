@@ -150,7 +150,6 @@ void maindev_loop() {
         } else if(cmd == CMD_CFG_SET) {
             setConfig();
         } else if(cmd == CMD_CFG_SAVE) {
-            printf("save...\n");
             saveConfig();
         } else if(cmd == CMD_LOAD3116CONFIG) {
             uint8_t address = getchar();
