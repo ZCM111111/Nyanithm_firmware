@@ -15,8 +15,9 @@ void reboot() {
 
 void boot_switch() {
     readConfig();
+    sleep_ms(20);
     initHwDevices();
-    sleep_ms(10);
+    sleep_ms(20);
     // if(ControllerConfig.controller_mode == MODE_NORMAL){
     boot_normalMode();
     // }
