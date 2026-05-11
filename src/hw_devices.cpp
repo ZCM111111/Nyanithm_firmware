@@ -132,7 +132,7 @@ bool detect3116(uint8_t addr) {
     i2c_write(0, addr, buf, 1, true);
     buf[0] = 0;
     i2c_read(0, addr, buf, 1, true);
-    if(buf[0] == addr) {
+    if(buf[0] == addr || buf[0]==0x43 || buf[0]==0x44) {
         return true;
     }
     return false;
@@ -152,26 +152,25 @@ void program_cy8cmbr3116_custom(uint8_t addr, uint8_t* cfg) {
 
     buf[1] = 0xff; // 软复位
     i2c_write(0, addr, buf, 2, true);
-    sleep_ms(10);
+    sleep_ms(20);
 }
-
 void init3116() {
     while(1) {
         if(detect3116(0x43) && detect3116(0x44)) {
-            led_internal.fill(WS2812::RGB(0x00, 0xA0, 0x00));
+            led_internal.fill(WS2812::RGB(0x00, 0x00, 0xff));
             led_internal.show();
             return;
         } else if(detect3116(0x43)) {
             if(detect3116(0x37)) {
                 program_cy8cmbr3116_custom(0x37, cy8cmbr3116_cfg_0x44);
             } else {
-                led_internal.fill(WS2812::RGB(0xff, 0xff, 0));
+                led_internal.fill(WS2812::RGB(0, 0xff, 0));
                 led_internal.show();
             }
         } else if(detect3116(0x37)) {
             program_cy8cmbr3116_custom(0x37, cy8cmbr3116_cfg_0x43);
         } else {
-            led_internal.fill(WS2812::RGB(0xff, 0x66, 0));
+            led_internal.fill(WS2812::RGB(0xff, 0, 0));
             led_internal.show();
         }
         sleep_ms(500);
